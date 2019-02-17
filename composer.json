@@ -1,0 +1,29 @@
+{
+    "name": "ceddyg/clara-sentinel",
+    "description": "Cartalyst/Sentinel made for Clara.",
+    "keywords": ["laravel", "clara", "sentinel", "user"],
+    "authors": [
+        {
+            "name": "CeddyG"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.1",
+        "cartalyst/sentinel": "2.0.*",
+        "ceddyg/query-builder-repository": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "CeddyG\\ClaraSentinel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CeddyG\\ClaraSentinel\\SentinelServiceProvider"
+            ]
+        }
+    }
+}
