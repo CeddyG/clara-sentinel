@@ -76,9 +76,5 @@ class SentinelServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../config/clara.sentinel.php', 'clara.sentinel'
         );
-        
-        $this->mergeConfigFrom(
-            __DIR__ . '/../config/clara.navbar.php', 'clara.navbar'
-        );
     }
 }
