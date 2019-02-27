@@ -3,10 +3,10 @@
 namespace CeddyG\ClaraSentinel\Http\Controllers\Admin;
 
 use Sentinel;
-use App\Models\User;
-use App\Models\Role;
-use App\Http\Requests\RoleRequest;
-use App\Repositories\RoleRepository;
+use CeddyG\ClaraSentinel\Models\User;
+use CeddyG\ClaraSentinel\Models\Role;
+use CeddyG\ClaraSentinel\Http\Requests\RoleRequest;
+use CeddyG\ClaraSentinel\Repositories\RoleRepository;
 use App\Http\Controllers\Controller;
 
 class RoleController extends Controller

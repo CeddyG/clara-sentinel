@@ -5,7 +5,7 @@ namespace CeddyG\ClaraSentinel\Http\Controllers;
 use Sentinel;
 use Reminder;
 use Illuminate\Http\Request;
-use App\Events\User\ReminderEvent;
+use CeddyG\ClaraSentinel\Events\User\ReminderEvent;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller

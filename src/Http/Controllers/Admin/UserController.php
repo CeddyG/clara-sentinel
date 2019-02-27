@@ -5,9 +5,9 @@ namespace CeddyG\ClaraSentinel\Http\Controllers\Admin;
 use Excel;
 use Sentinel;
 use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\User;
-use App\Http\Requests\UserRequest;
+use CeddyG\ClaraSentinel\Models\Role;
+use CeddyG\ClaraSentinel\Models\User;
+use CeddyG\ClaraSentinel\Http\Requests\UserRequest;
 use Facades\App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 
