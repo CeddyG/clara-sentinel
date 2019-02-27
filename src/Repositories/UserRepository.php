@@ -2,7 +2,7 @@
 
 namespace CeddyG\ClaraSentinel\Repositories;
 
-use Ceddyg\QueryBuilderRepository\QueryBuilderRepository;
+use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
 use Sentinel;
 
