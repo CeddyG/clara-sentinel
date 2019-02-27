@@ -3,6 +3,9 @@ namespace CeddyG\ClaraSentinel;
 
 use Illuminate\Support\ServiceProvider;
 
+use View;
+use Route;
+
 /**
  * Description of EntityServiceProvider
  *
@@ -21,6 +24,58 @@ class SentinelServiceProvider extends ServiceProvider
 		$this->publishesTranslations();
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 		$this->publishesView();
+        
+        $this->setPermissionsInView();
+    }
+    
+    private function setPermissionsInView()
+    {
+        View::composer('admin.user.form', function($view)
+        {            
+            $view->with('aPermissions', self::getPermissions());
+        });
+        
+        View::composer('admin.group.form', function($view)
+        {            
+            $view->with('aPermissions', self::getPermissions());
+        });
+    }
+    
+    public static function getPermissions()
+    {
+        $oPerms = Route::getRoutes();
+        
+        //Liste de permissions possibles à partir des routes existantes
+        $aPermissions = [];
+        $sCurrentPerm = '';
+        
+        foreach($oPerms as $oPerm)
+        {
+            if($oPerm->getName() != ''
+            && $oPerm->getName() != 'authenticate'
+            && strrpos($oPerm->getName(), 'sentinel') === false
+            && strrpos($oPerm->getName(), 'group') === false
+            && strrpos($oPerm->getName(), 'debugbar') === false)
+            {
+                $sName = preg_replace('/admin./', '', $oPerm->getName(), 1);
+                
+                $sTmpName = explode('.', $sName);
+                if($sCurrentPerm != $sTmpName[0] && $sTmpName[0] != 'admin')
+                {
+                    $aPermissions['admin.'.$sTmpName[0].'.*'] = $sTmpName[0];
+                    $sCurrentPerm = $sTmpName[0];
+                }
+                
+                $sName = str_replace('.', ' ', $sName);
+                $aPermissions[$oPerm->getName()] = $sName;
+            }
+            
+        }
+        
+        asort($aPermissions);
+        $aPermissions = ['*' => 'all'] + $aPermissions;
+        
+        return $aPermissions;
     }
     
     /**
@@ -75,6 +130,10 @@ class SentinelServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             __DIR__ . '/../config/clara.sentinel.php', 'clara.sentinel'
+        );
+        
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/clara.group.php', 'clara.group'
         );
     }
 }
