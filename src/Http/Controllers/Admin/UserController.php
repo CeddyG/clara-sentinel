@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    protected $sPath = 'admin/user';
+    protected $sPath = 'clara-sentinel::admin.user';
     
     /**
      * Display a listing of the resource.

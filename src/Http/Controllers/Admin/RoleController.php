@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
-    protected $sPath = 'admin/group';
+    protected $sPath = 'clara-sentinel::admin.group';
 
     /**
      * Display a listing of the resource.

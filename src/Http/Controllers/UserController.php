@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    protected $sPath = 'abricot/user';
+    protected $sPath = 'clara-sentinel::admin.user';
     
     //Affiche le formulaire du login
     public function login()

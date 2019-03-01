@@ -1,16 +1,19 @@
 <?php
 
-//Sentinel login
-Route::get('login', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@login');
-Route::post('authenticate', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@authenticate');
-Route::get('logout', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@logout');
+Route::group(['middleware' => 'web'], function()
+{
+    //Sentinel login
+    Route::get('login', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@login');
+    Route::post('authenticate', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@authenticate');
+    Route::get('logout', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@logout');
 
-// Password Reset Routes...
-Route::get('password/reset', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@createReminder')->name('password.request');
-Route::post('password/email', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@storeReminder')->name('password.email');
-Route::get('password/reset/{token}', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@editPassword')->name('password.reset');
-Route::post('password/reset', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@updatePassword')->name('password.update');
-
+    // Password Reset Routes...
+    Route::get('password/reset', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@createReminder')->name('password.request');
+    Route::post('password/email', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@storeReminder')->name('password.email');
+    Route::get('password/reset/{token}', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@editPassword')->name('password.reset');
+    Route::post('password/reset', 'CeddyG\ClaraSentinel\Http\Controllers\UserController@updatePassword')->name('password.update');
+});
+    
 //User
 Route::group(['prefix' => config('clara.sentinel.route.web.prefix'), 'middleware' => config('clara.sentinel.route.web.middleware')], function()
 {
