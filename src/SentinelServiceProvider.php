@@ -30,12 +30,12 @@ class SentinelServiceProvider extends ServiceProvider
     
     private function setPermissionsInView()
     {
-        View::composer('admin.user.form', function($view)
+        View::composer('clara-sentinel::admin.user.form', function($view)
         {            
             $view->with('aPermissions', self::getPermissions());
         });
         
-        View::composer('admin.group.form', function($view)
+        View::composer('clara-sentinel::admin.group.form', function($view)
         {            
             $view->with('aPermissions', self::getPermissions());
         });
