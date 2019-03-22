@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use CeddyG\ClaraSentinel\Models\Role;
 use CeddyG\ClaraSentinel\Models\User;
 use CeddyG\ClaraSentinel\Http\Requests\UserRequest;
-use Facades\App\Repositories\UserRepository;
+use Facades\CeddyG\ClaraSentinel\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
