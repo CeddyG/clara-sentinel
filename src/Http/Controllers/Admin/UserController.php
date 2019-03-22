@@ -13,7 +13,8 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    protected $sPath = 'clara-sentinel::admin.user';
+    protected $sPath            = 'clara-sentinel::admin.user';
+    protected $sPathRedirect    = 'admin/user';
     
     /**
      * Display a listing of the resource.
@@ -51,7 +52,7 @@ class UserController extends Controller
     {
         UserRepository::store($oRequest->all());
         
-        return redirect($this->sPath);
+        return redirect($this->sPathRedirect);
     }
     
     public function import(Request $oRequest, UserRepository $oRepository)
@@ -94,13 +95,13 @@ class UserController extends Controller
                     }
                 }
                 
-                return redirect($this->sPath)->withOk('Import effectué avec succès.');
+                return redirect($this->sPathRedirect)->withOk('Import effectué avec succès.');
             });
             
-            return redirect($this->sPath)->withKo('L\'import a échoué.');
+            return redirect($this->sPathRedirect)->withKo('L\'import a échoué.');
         }
         
-        return redirect($this->sPath)->withKo('Aucun fichier trouvé.');
+        return redirect($this->sPathRedirect)->withKo('Aucun fichier trouvé.');
     }
 
     /**
@@ -140,7 +141,7 @@ class UserController extends Controller
     {
         UserRepository::update($id, $oRequest->all());
 
-        return redirect($this->sPath)->withOk("L'objet a été modifié.");
+        return redirect($this->sPathRedirect)->withOk("L'objet a été modifié.");
     }
 
     /**
@@ -155,7 +156,7 @@ class UserController extends Controller
         $oUser->roles()->detach();
         $oUser->delete();
         
-        return redirect($this->sPath)->withOk("L'objet a été supprimé.");
+        return redirect($this->sPathRedirect)->withOk("L'objet a été supprimé.");
     }
     
     //Affiche le formulaire du login
