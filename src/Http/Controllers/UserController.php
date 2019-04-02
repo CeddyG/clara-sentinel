@@ -55,7 +55,7 @@ class UserController extends Controller
     
     public function createReminder() 
     {
-        return view('abricot.user.reminder-form');
+        return view($this->sPath.'.reminder-form');
     }
 
     public function storeReminder(Request $oRequest) 
@@ -92,7 +92,7 @@ class UserController extends Controller
             
             if ($oUser && Reminder::exists($oUser, $sCode))
             {
-                return view('abricot.user.reset-password-form', ['sCode' => $sCode]);                
+                return view($this->sPath.'.reset-password-form', ['sCode' => $sCode]);                
             }
             else
             {

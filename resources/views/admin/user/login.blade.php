@@ -50,7 +50,7 @@
           
           {!! Form::close() !!}
 
-          <a href="#">I forgot my password</a><br>
+          <a href="{{ url(route('password.request')) }}">I forgot my password</a><br>
           <a href="register.html" class="text-center">Register a new membership</a>
 
         </div>

@@ -5,6 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 use View;
 use Route;
+use Event;
+use CeddyG\ClaraSentinel\Listeners\MailSubscriber;
 
 /**
  * Description of EntityServiceProvider
@@ -26,6 +28,8 @@ class SentinelServiceProvider extends ServiceProvider
 		$this->publishesView();
         
         $this->setPermissionsInView();
+        
+        Event::subscribe(MailSubscriber::class);
     }
     
     private function setPermissionsInView()
