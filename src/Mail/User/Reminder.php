@@ -30,6 +30,6 @@ class Reminder extends Mailable
     public function build()
     {
         return $this->view('clara-sentinel::emails.user.reminder')
-            ->subject(__('passwords.reset_password'));
+            ->subject(__('clara-sentinel::passwords.reset_password'));
     }
 }
