@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\User;
+namespace CeddyG\ClaraSentinel\Events\User;
 
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Cartalyst\Sentinel\Reminders\EloquentReminder;
