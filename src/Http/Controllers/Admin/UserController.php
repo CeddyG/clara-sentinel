@@ -28,6 +28,17 @@ class UserController extends Controller
 
         return view($this->sPath.'/index', compact('oItems', 'sPageTitle'));
     }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function selectAjax(Request $oRequest)
+    {
+        UserRepository::setReturnCollection(false);
+        return UserRepository::select2($oRequest->all());
+    }
 
     /**
      * Show the form for creating a new resource.
