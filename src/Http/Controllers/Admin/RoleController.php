@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
-    protected $sPath = 'clara-sentinel::admin.group';
+    protected $sPath            = 'clara-sentinel::admin.group';
+    protected $sPathRedirect    = 'admin/group';
 
     /**
      * Display a listing of the resource.
@@ -50,7 +51,7 @@ class RoleController extends Controller
     {
         RoleRepository::store($oRequest->all());
         
-        return redirect($this->sPath);
+        return redirect($this->sPathRedirect);
     }
 
     /**
@@ -81,7 +82,7 @@ class RoleController extends Controller
     {
         RoleRepository::update($id, $oRequest->all());
         
-        return redirect($this->sPath)->withOk("L'objet a été modifié.");
+        return redirect($this->sPathRedirect)->withOk("L'objet a été modifié.");
     }
 
     /**
@@ -97,6 +98,6 @@ class RoleController extends Controller
         $oRole->users()->detach();
         $oRole->delete();
         
-        return redirect($this->sPath)->withOk("L'objet a été supprimé.");
+        return redirect($this->sPathRedirect)->withOk("L'objet a été supprimé.");
     }
 }
