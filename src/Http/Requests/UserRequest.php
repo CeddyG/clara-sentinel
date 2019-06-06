@@ -3,7 +3,7 @@
 namespace CeddyG\ClaraSentinel\Http\Requests;
 
 use Request;
-use App\Models\User;
+use CeddyG\ClaraSentinel\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -16,6 +16,18 @@ class UserRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+    
+    public function all($keys = null)
+    {
+        $aAttribute = parent::all($keys);
+        
+        if (($this->method() == 'PUT' || $this->method() == 'PATCH') && $aAttribute['password'] == '')
+        {
+            unset($aAttribute['password']);
+        }
+        
+        return $aAttribute;
     }
 
     /**
