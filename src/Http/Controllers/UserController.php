@@ -35,15 +35,26 @@ class UserController extends Controller
         
         if(Sentinel::authenticate($aInputs, $bRemember))
         {
-            return redirect('/');
+            if (session('asked-uri') != null)
+            {
+                $sUri = session('asked-uri');
+                
+                $oRequest->session()->forget('asked-uri');
+                
+                return redirect($sUri);                
+            }
+            else
+            {
+                return redirect('/');
+            }
         }
         else
         {
             return redirect('login')
-            ->withInput($oRequest->only('email', 'remember'))
-            ->withErrors([
-                'fail' => __('auth.failed'),
-            ]);
+                ->withInput($oRequest->only('email', 'remember'))
+                ->withErrors([
+                    'fail' => __('auth.failed'),
+                ]);
         }
     }
     

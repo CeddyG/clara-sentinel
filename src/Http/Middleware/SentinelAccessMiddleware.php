@@ -11,20 +11,20 @@ class SentinelAccessMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request  $oRequest
+     * @param  \Closure  $oNext
      * @return mixed
      */
-    public function handle($request, Closure $next, $sType = 'web')
+    public function handle($oRequest, Closure $oNext, $sType = 'web')
     {
         if (Sentinel::check())
         {
             // User is logged in and assigned to the `$user` variable.
-            $action = Route::getCurrentRoute()->getName();
+            $sAction = Route::getCurrentRoute()->getName();
             
-            if (Sentinel::hasAccess($action))
+            if (Sentinel::hasAccess($sAction))
             {
-                return $next($request);
+                return $oNext($oRequest);
             }
             else 
             {
@@ -53,6 +53,8 @@ class SentinelAccessMiddleware
             }
             else
             {
+                session(['asked-uri' => $oRequest->path()]);
+                
                 return redirect('login');
             }
         }
