@@ -11,7 +11,7 @@
     "require": {
         "php": ">=7.2",
         "illuminate/support": "^6.0|^7.0",
-        "cartalyst/sentinel": "2.0.*",
+        "cartalyst/sentinel": "^3.0",
         "ceddyg/query-builder-repository": "^1.2"
     },
     "autoload": {
