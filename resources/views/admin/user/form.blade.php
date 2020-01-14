@@ -52,7 +52,7 @@
                             ->multiple() !!}
                     @endif
                         
-                    @if(isset($oItem))
+                    @if(isset($oItem) && $oItem->permissions != null)
                         {!! BootForm::select('Groupes', 'roles[]', $aRoles)
                             ->class('select2')
                             ->multiple()
