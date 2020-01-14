@@ -41,7 +41,7 @@
                     {!! BootForm::text('E-mail', 'email') !!}
                     {!! BootForm::password('Mot de passe', 'password') !!}
                     
-                    @if(isset($oItem))
+                    @if(isset($oItem) && $oItem->permissions != null)
                         {!! BootForm::select('Permissions', 'permissions[]', $aPermissions)
                             ->class('select2')
                             ->multiple()
@@ -52,7 +52,7 @@
                             ->multiple() !!}
                     @endif
                         
-                    @if(isset($oItem) && $oItem->permissions != null)
+                    @if(isset($oItem))
                         {!! BootForm::select('Groupes', 'roles[]', $aRoles)
                             ->class('select2')
                             ->multiple()
