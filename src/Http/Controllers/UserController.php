@@ -75,8 +75,11 @@ class UserController extends Controller
 
         if ($oUser) 
         {
-            ($oReminder = Reminder::exists($oUser)) || ($oReminder = Reminder::create($oUser));
-
+            if (!$oReminder = Reminder::get($oUser))
+            {
+                $oReminder = Reminder::create($oUser);
+            }
+            
             event(new ReminderEvent($oUser, $oReminder));
             
             return redirect('login')->withStatus(__('passwords.sent'));
