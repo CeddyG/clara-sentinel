@@ -2,13 +2,14 @@
 
 namespace CeddyG\ClaraSentinel\Repositories;
 
+use Str;
 use Sentinel;
 
 class RoleRepository
 {
     public static function store($aInputs)
     {
-        $aInputs['slug'] = str_slug($aInputs['name']);
+        $aInputs['slug'] = Str::slug($aInputs['name']);
         
         $oRole = Sentinel::getRoleRepository()
             ->createModel()
@@ -23,7 +24,7 @@ class RoleRepository
     
     public static function update($id, $aInputs)
     {
-        $aInputs['slug'] = str_slug($aInputs['name']);
+        $aInputs['slug'] = Str::slug($aInputs['name']);
         $oRole = Sentinel::findRoleById($id)
             ->fill($aInputs);
         
