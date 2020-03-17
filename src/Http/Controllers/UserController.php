@@ -2,6 +2,7 @@
 
 namespace CeddyG\ClaraSentinel\Http\Controllers;
 
+use Str;
 use Sentinel;
 use Reminder;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ class UserController extends Controller
         
         if(Sentinel::authenticate($aInputs, $bRemember))
         {
+            Sentinel::update(Sentinel::getUser()->id, ['api_token' => Str::random(60)]);
+            
             if (session('asked-uri') != null)
             {
                 $sUri = session('asked-uri');

@@ -5,6 +5,7 @@ namespace CeddyG\ClaraSentinel\Http\Middleware;
 use Closure;
 use Sentinel;
 use Illuminate\Support\Facades\Route;
+use Facades\CeddyG\ClaraSentinel\Repositories\UserRepository;
 
 class SentinelAccessMiddleware
 {
@@ -17,6 +18,20 @@ class SentinelAccessMiddleware
      */
     public function handle($oRequest, Closure $oNext, $sType = 'web')
     {
+        if (!is_null($oRequest->bearerToken()))
+        {
+            $oUser = UserRepository::findByField(
+                'api_token', 
+                $oRequest->bearerToken(), 
+                ['id']
+            );
+            
+            if (!is_null($oUser))
+            {
+                Sentinel::authenticate(Sentinel::findById($oUser->first()->id));
+            }
+        }
+        
         if (Sentinel::check())
         {
             // User is logged in and assigned to the `$user` variable.
